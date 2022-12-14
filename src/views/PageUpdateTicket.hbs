@@ -1,0 +1,54 @@
+<h1 style='text-align: center ; margin-top:40px;'>SỬA THÔNG TIN VÉ</h1>
+<form
+  class='mt-4'
+  method='post'
+  action='/manage/update/{{ticket._id}}?_method=put'
+>
+  <div class='mb-3'>
+    <label for='exampleInputEmail1' class='form-label'>CLB</label>
+    <input
+      type='text    '
+      class='form-control'
+      value='{{ticket.clb}}'
+      aria-describedby='emailHelp'
+      name='clb'
+    />
+
+  </div>
+  <div class='mb-3'>
+    <label for='exampleInputPassword1' class='form-label'>NGÀY THI ĐẤU</label>
+    <input type='text' class='form-control' value='{{ticket.day}}' name='day' />
+  </div>
+
+  <div class='mb-3'>
+    <label for='exampleInputPassword1' class='form-label'>GIỜ THI ĐẤU</label>
+    <input
+      type='text'
+      class='form-control'
+      value='{{ticket.time}}'
+      name='time'
+    />
+  </div>
+
+  <div class='mb-3'>
+    <label for='exampleInputPassword1' class='form-label'>SÂN VẬN ĐỘNG</label>
+    <input
+      type='text'
+      class='form-control'
+      value='{{ticket.stadium}}'
+      name='stadium'
+    />
+  </div>
+
+  <div class='mb-3'>
+    <label for='exampleInputPassword1' class='form-label'>GIÁ VÉ</label>
+    <input
+      type='text'
+      class='form-control'
+      value='{{ticket.price}}'
+      name='price'
+    />
+  </div>
+
+  <button type='submit' class='btn btn-primary'>CẬP NHẬT</button>
+</form>

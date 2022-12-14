@@ -1,0 +1,26 @@
+<h1 style='text-align: center ; margin-top: 40px'>DANH SÁCH KHÁCH ĐÃ ĐẶT VÉ</h1>
+
+<table class='table mt-4'>
+  <thead>
+    <tr>
+      <th scope='col'>#</th>
+      <th scope='col'>User Name</th>
+      <th scope='col'>Trận Đấu</th>
+      <th scope='col'>Ngày Thi Đấu</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each userbuyticket}}
+      <tr>
+        <th scope='row'>{{sum @index 1}}</th>
+        <td>{{this.userName}}</td>
+        <td>{{this.clb}}</td>
+        <td>{{this.day}}</td>
+
+      </tr>
+
+    {{/each}}
+
+  </tbody>
+</table>

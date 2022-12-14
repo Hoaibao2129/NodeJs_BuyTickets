@@ -1,0 +1,101 @@
+<h1 style='text-align: center ; margin-top: 40px;'>ĐẶT VÉ BÓNG ĐÁ ONLINE</h1>
+
+{{#if showOut}}
+  <form class='d-flex' role='search' action='/ticket/search' method='get'>
+    <input
+      class='form-control me-2'
+      type='search'
+      placeholder='Search'
+      aria-label='Search'
+      name='search'
+      autocomplete='off'
+    />
+    <button class='btn btn-outline-success' type='submit'>Search</button>
+  </form>
+{{/if}}
+
+{{#if showLogin}}
+  <a href='/login'><button type='button' class='btn btn-primary'>ĐĂNG NHẬP</button></a>
+{{/if}}
+
+{{#if showOut}}
+  <a href='/'><button type='button' class='btn btn-danger'>ĐĂNG XUẤT</button></a>
+{{/if}}
+
+{{#if showBtn}}
+  <a href='/ticket'><button type='button' class='btn btn-success'>ĐẶT VÉ</button></a>
+{{/if}}
+
+{{#if showBtn}}
+  <a href='/ticket/buyUser'><button type='button' class='btn btn-primary'>VÉ ĐÃ
+      ĐẶT</button></a>
+{{/if}}
+
+{{#if showSignin}}
+  <a href='/signin'><button type='button' class='btn btn-success'>ĐĂNG KÝ TÀI
+      KHOẢN</button></a>
+{{/if}}
+
+<div class='row row-cols-1 row-cols-md-2 g-4 mt-4'>
+  {{#each ticket}}
+    <div class='col'>
+      <div class='card'>
+        <img src='{{this.image}}' class='card-img-top' alt='...' />
+        <div class='card-body'>
+          <h5 class='card-title'>{{this.clb}}</h5>
+          <p class='card-text'>Ngày : {{this.day}}</p>
+          <p class='card-text'>SVD : {{this.stadium}}</p>
+          <p class='card-text'>GIỜ : {{this.time}}</p>
+          <h5 class='card-title'> GIÁ VÉ :{{this.price}}</h5>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+
+  {{! <div class='col'>
+    <div class='card'>
+      <img
+        src='https://i.imgur.com/nM4hdER.jpeg'
+        class='card-img-top'
+        alt='...'
+      />
+      <div class='card-body'>
+        <h5 class='card-title'>Card title</h5>
+        <p class='card-text'>This is a longer card with supporting text below as
+          a natural lead-in to additional content. This content is a little bit
+          longer.</p>
+        <a href='#' class='btn btn-primary'>ĐẶT VÉ</a>
+      </div>
+    </div>
+  </div>
+  <div class='col'>
+    <div class='card'>
+      <img
+        src='https://i.imgur.com/nM4hdER.jpeg'
+        class='card-img-top'
+        alt='...'
+      />
+      <div class='card-body'>
+        <h5 class='card-title'>Card title</h5>
+        <p class='card-text'>This is a longer card with supporting text below as
+          a natural lead-in to additional content.</p>
+        <a href='#' class='btn btn-primary'>ĐẶT VÉ</a>
+      </div>
+    </div>
+  </div>
+  <div class='col'>
+    <div class='card'>
+      <img
+        src='https://i.imgur.com/nM4hdER.jpeg'
+        class='card-img-top'
+        alt='...'
+      />
+      <div class='card-body'>
+        <h5 class='card-title'>Card title</h5>
+        <p class='card-text'>This is a longer card with supporting text below as
+          a natural .</p>
+        <a href='#' class='btn btn-primary'>ĐẶT VÉ</a>
+      </div>
+    </div>
+  </div> }}
+</div>

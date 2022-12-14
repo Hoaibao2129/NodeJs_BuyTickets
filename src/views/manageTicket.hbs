@@ -1,0 +1,94 @@
+<h1 style='text-align:center ; margin-top:40px;'>DANH SÁCH TRẬN ĐẤU ĐANG MỞ BÁN</h1>
+<a href='/manage/addPage'><button type='button' class='btn btn-primary'>THÊM
+    TRẬN
+  </button></a>
+<table class='table mt-4'>
+  <thead>
+    <tr>
+      <th scope='col'>#</th>
+      <th scope='col'>Trận Đấu</th>
+      <th scope='col'>Ngày Đấu</th>
+      <th scope='col'>Giờ Thi Đấu</th>
+      <th scope='col'>Sân Vận Động</th>
+      <th></th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each ticket}}
+      <tr>
+        <th scope='row'>{{sum @index 1}}</th>
+        <td>{{this.clb}}</td>
+        <td>{{this.day}}</td>
+        <td>{{this.time}}</td>
+        <td>{{this.stadium}}</td>
+        <td><a href='/manage/PageUpdateTicket/{{this._id}}'><button
+              type='button'
+              class='btn btn-success'
+            >Sửa</button></a></td>
+        <td><button
+            type='button'
+            class='btn btn-danger'
+            data-bs-toggle='modal'
+            data-bs-target='#delete-ticket-model'
+            data-id='{{this._id}}'
+          >Xóa</button></td>
+      </tr>
+    {{/each}}
+
+  </tbody>
+</table>
+
+{{!Form delete  }}
+<form name='delete-ticket-form' method='post'></form>
+
+<!-- Modal -->
+<div
+  class='modal fade'
+  id='delete-ticket-model'
+  tabindex='-1'
+  aria-labelledby='exampleModalLabel'
+  aria-hidden='true'
+>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h1 class='modal-title fs-5' id='exampleModalLabel'>DELETE TICKET</h1>
+        <button
+          type='button'
+          class='btn-close'
+          data-bs-dismiss='modal'
+          aria-label='Close'
+        ></button>
+      </div>
+      <div class='modal-body'>
+        BẠN CÓ CHẮC CHẮC MUỐN XÓA VÉ
+      </div>
+      <div class='modal-footer'>
+        <button
+          type='button'
+          class='btn btn-secondary'
+          data-bs-dismiss='modal'
+        >Close</button>
+        <button
+          id='btn-delete-ticket'
+          type='button'
+          class='btn btn-primary'
+        >YES</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var ticketId; var deleteTicketForm = document.forms['delete-ticket-form'];
+  const deleteTicketModel = document.getElementById('delete-ticket-model'); var
+  btnDeleteTicket = document.getElementById('btn-delete-ticket');
+  deleteTicketModel.addEventListener('show.bs.modal', event => { const button
+  =event.relatedTarget; ticketId = button.getAttribute('data-id') });
+  btnDeleteTicket.onclick = function(){ deleteTicketForm.action
+  ='/manage/deleteTicket/' + ticketId + '?_method=DELETE';
+  deleteTicketForm.submit(); }
+
+</script>

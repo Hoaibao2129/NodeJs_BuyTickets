@@ -1,0 +1,16 @@
+<div class='row row-cols-1 row-cols-md-2 g-4 mt-4'>
+  {{#each ticket}}
+    <div class='col'>
+      <div class='card'>
+        <img src='{{this.image}}' class='card-img-top' alt='...' />
+        <div class='card-body'>
+          <h5 class='card-title'>{{this.clb}}</h5>
+          <p class='card-text'>Ngày : {{this.day}}</p>
+          <p class='card-text'>SVD : {{this.stadium}}</p>
+          <p class='card-text'>GIỜ : {{this.time}}</p>
+          <h5 class='card-title'> GIÁ VÉ :{{this.price}}</h5>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

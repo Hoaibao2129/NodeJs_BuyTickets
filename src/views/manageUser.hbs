@@ -1,0 +1,94 @@
+<h1 style='text-align: center ; margin-top: 40px;'>DANH SÁCH KHÁCH HÀNG </h1>
+
+<form class='d-flex' role='search' action='/manage/search' method='get'>
+  <input
+    class='form-control me-2'
+    type='search'
+    placeholder='Search'
+    aria-label='Search'
+    name='search'
+    autocomplete='off'
+  />
+  <button class='btn btn-outline-success' type='submit'>Search</button>
+</form>
+
+<table class='table mt-4'>
+  <thead>
+    <tr>
+      <th scope='col'>#</th>
+      <th scope='col'>UserName</th>
+      <th scope='col'>numberPhone</th>
+      <th scope='col'>address</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each accout}}
+      <tr>
+        <th scope='row'>{{sum @index 1}}</th>
+        <td>{{this.userName}}</td>
+        <td>{{this.numberPhone}}</td>
+        <td>{{this.address}}</td>
+        <td><button
+            type='button'
+            class='btn btn-primary'
+            data-bs-toggle='modal'
+            data-bs-target='#delete-user'
+            data-id='{{this._id}}'
+          >XOÁ</button></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{!Form delete  }}
+<form name='form-dele-user' method='post'></form>
+
+<!-- Modal -->
+<div
+  class='modal fade'
+  id='delete-user'
+  tabindex='-1'
+  aria-labelledby='exampleModalLabel'
+  aria-hidden='true'
+>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h1 class='modal-title fs-5' id='exampleModalLabel'>DELETE USER</h1>
+        <button
+          type='button'
+          class='btn-close'
+          data-bs-dismiss='modal'
+          aria-label='Close'
+        ></button>
+      </div>
+      <div class='modal-body'>
+        BẠN CÓ CHẮC MUỐN XÓA TÀI KHOẢN NÀY
+      </div>
+      <div class='modal-footer'>
+        <button
+          type='button'
+          class='btn btn-secondary'
+          data-bs-dismiss='modal'
+        >Close</button>
+        <button
+          type='button'
+          class='btn btn-primary'
+          id='btn-delete-user'
+        >YES</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var dataId ; var formDeleteUser = document.forms['form-dele-user']; var
+  deleteUser = document.getElementById('delete-user'); var deleteUserY =
+  document.getElementById('btn-delete-user');
+  deleteUser.addEventListener('show.bs.modal', event => { const button =
+  event.relatedTarget; dataId = button.getAttribute('data-id'); });
+  deleteUserY.onclick = function(){ formDeleteUser.action =
+  '/manage/deleteUser/' + dataId + '?_method=DELETE'; formDeleteUser.submit(); }
+
+</script>
