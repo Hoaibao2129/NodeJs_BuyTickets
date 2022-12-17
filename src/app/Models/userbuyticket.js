@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongooseDelete = require('mongoose-delete');
 const Schema = mongoose.Schema;
 
 const userBuyTicket = new Schema(
@@ -8,10 +9,15 @@ const userBuyTicket = new Schema(
     clb: String,
     stadium: String,
     userName: String,
+    countTicket: String,
+    price: String,
+    nameTicket: String,
   },
   {
     timestamps: true,
   }
 );
+
+userBuyTicket.plugin(mongooseDelete);
 
 module.exports = mongoose.model('userBuyTicket', userBuyTicket);

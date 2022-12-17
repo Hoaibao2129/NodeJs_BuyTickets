@@ -1,17 +1,14 @@
-<h2>XÁC NHẬN THÔNG TIN KHÁCH HÀNG</h2>
+<h2 class='mt-4' style='text-align: center;'>XÁC NHẬN THÔNG TIN KHÁCH HÀNG</h2>
 <form class='row g-3 needs-validation mt-4'>
-  <div class='col-md-4 position-relative'>
-    <label for='validationTooltip01' class='form-label'>TÊN KHÁCH HÀNG</label>
-    <li class='list-group-item'>{{accout.userName}}</li>
+  <div class='col-md-6 position-relative'>
+    <label class='form-label'>TÊN KHÁCH HÀNG</label>
+    <h3>{{accout.userName}}</h3>
 
-  </div>
-  <div class='col-md-6 position-relative'>
-    <label for='validationTooltip02' class='form-label'>Số Điện Thoại</label>
-    <li class='list-group-item'>{{accout.numberPhone}}</li>
-  </div>
-  <div class='col-md-6 position-relative'>
-    <label for='validationTooltip03' class='form-label'>Địa Chỉ</label>
-    <li class='list-group-item'>{{accout.address}}</li>
+    <label class='form-label mt-4'>SỐ ĐIỆN THOẠI</label>
+    <h3>{{accout.numberPhone}}</h3>
+
+    <label class='form-label mt-4'>ĐỊA CHỈ</label>
+    <h3>{{accout.address}}</h3>
 
   </div>
 
@@ -19,3 +16,23 @@
 <div class='col-12'>
   <a href='/ticket/user/save'><button class='btn btn-primary'>ĐẶT Vé</button></a>
 </div>
+
+{{!-- <ul class='list-group mt-4'>
+  <li
+    class='list-group-item active'
+    aria-current='true'
+    style='text-align: center ;'
+  >Xác Nhận Thông Tin cá nhân</li>
+  <li class='list-group-item' style='text-align: center ;'>
+    {{accout.userName}}</li>
+  <li class='list-group-item' style='text-align: center ;'>
+    {{accout.numberPhone}}</li>
+  <li class='list-group-item' style='text-align: center ;'>
+    {{accout.address}}</li>
+
+  <a href='/ticket/user/save'><button
+      type='button'
+      class='btn btn-primary mt-4'
+      style='text-align: center ;'
+    >Tiếp Tục</button></a>
+</ul> --}}

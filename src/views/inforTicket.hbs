@@ -1,4 +1,4 @@
-<ul class='list-group mt-4'>
+{{!-- <ul class='list-group mt-4'>
   <li
     class='list-group-item active'
     aria-current='true'
@@ -15,4 +15,49 @@
       class='btn btn-primary mt-4'
       style='text-align: center ;'
     >Tiếp Tục</button></a>
-</ul>
+</ul> --}}
+
+<h2 class='mt-4' style='text-align: center;'>XÁC NHẬN THÔNG TIN ĐẶT HÀNG</h2>
+<form
+  class='row g-3 needs-validation mt-4'
+  action='/ticket/user/save'
+  method='post'
+>
+  <div class='col-md-6 position-relative'>
+    <label class='form-label'>CLB</label>
+    <h3>{{ticket.clb}}</h3>
+
+    <label class='form-label mt-4'>THỜI GIAN</label>
+    <h3>{{ticket.time}}</h3>
+
+    <label class='form-label mt-4'>NGÀY</label>
+    <h3>{{ticket.day}}</h3>
+
+    <label class='form-label mt-4'>SÂN VẬN ĐỘNG</label>
+    <h3>{{ticket.stadium}}</h3>
+
+    <label class='form-label mt-4'>CHỌN LOẠI VÉ</label>
+    <select
+      class='form-select'
+      aria-label='Default select example'
+      name='loaiVe'
+    >
+      <option>Chọn loại vé</option>
+      <option value='{{ticket.price}}'>Vé Thường : {{ticket.price}}</option>
+      <option value='{{pricerTichket ticket.price 50000}}'>Vé Vip 1 :
+        {{pricerTichket ticket.price 50000}}</option>
+      <option value='{{pricerTichket ticket.price 70000}}'>Vé Vip 2 :
+        {{pricerTichket ticket.price 70000}}
+      </option>
+    </select>
+
+    <label class='form-label mt-4'>SỐ LƯỢNG VÉ</label><br />
+    <td><input type='text' name='count' /></td>
+
+  </div>
+  <button class='btn btn-outline-success' type='submit'>ĐẶT VÉ</button>
+</form>
+
+{{! <div class='col-12'>
+  <a href='/ticket/user/save'><button class='btn btn-primary'>ĐẶT Vé</button></a>
+</div> }}

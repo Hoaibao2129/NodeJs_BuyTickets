@@ -20,7 +20,7 @@ class manageController {
   // [GET] /manage/showTicketBuy
 
   showTicketBuy(req, res, next) {
-    UserBuyTicket.find({})
+    UserBuyTicket.find({ deleted: false })
       .then((userbuyticket) =>
         res.render('userBuyTicket', {
           userbuyticket: muntipleMongooseToObject(userbuyticket),
@@ -88,6 +88,7 @@ class manageController {
       .catch(next);
   }
 
+  //[GET] /
   search(req, res, next) {
     Accout.find({
       userName: { $regex: '.*' + req.query.search + '.*', $options: 'i' },
@@ -96,6 +97,24 @@ class manageController {
       .then((accout) =>
         res.render('manageUser', {
           accout: muntipleMongooseToObject(accout),
+        })
+      )
+      .catch(next);
+  }
+
+  // [GET] /manage/confirmTicket/:id
+  confirmTicket(req, res, next) {
+    UserBuyTicket.delete({ _id: req.params.id })
+      .then(() => res.redirect('back'))
+      .catch(next);
+  }
+
+  // [GET] /manage/listTicket
+  listTicket(req, res, next) {
+    UserBuyTicket.find({ deleted: true })
+      .then((userbuyticket) =>
+        res.render('listTicketBuy', {
+          userbuyticket: muntipleMongooseToObject(userbuyticket),
         })
       )
       .catch(next);

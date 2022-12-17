@@ -13,5 +13,7 @@ router.put('/update/:id', manageController.update);
 router.delete('/deleteTicket/:id', manageController.deleteTicket);
 router.delete('/deleteUser/:id', manageController.deleteUser);
 router.get('/search', manageController.search);
+router.get('/confirmTicket/:id', manageController.confirmTicket);
+router.get('/listTicket', manageController.listTicket);
 
 module.exports = router;

@@ -1,0 +1,40 @@
+<h1 style='text-align: center ; margin-top: 40px'>VÉ ĐÃ ĐẶT</h1>
+
+<table class='table mt-4'>
+  <thead>
+    <tr>
+      <th scope='col'>#</th>
+
+      <th scope='col'>Trận Đấu</th>
+      <th scope='col'>Ngày Thi Đấu</th>
+      <th scope='col'>Loại vé</th>
+      <th scope='col'>Số Lượng vé</th>
+      <th scope='col'>Tổng tiền</th>
+
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each ticket}}
+      <tr>
+        <th scope='row'>{{sum @index 1}}</th>
+
+        <td>{{this.clb}}</td>
+        <td>{{this.day}}</td>
+        <td>{{this.nameTicket}}</td>
+        <td>{{this.countTicket}}</td>
+        <td>{{this.price}}</td>
+      </tr>
+
+    {{else}}
+      <tr>
+        <td colspan='4' class='text-center'>BẠN CHƯA ĐẶT MUA VÉ
+          <a href='/login/usePageLogin'>Bấm vào để đặt vé các trận đấu mới nhất</a>
+        </td>
+      </tr>
+
+    {{/each}}
+
+  </tbody>
+</table>

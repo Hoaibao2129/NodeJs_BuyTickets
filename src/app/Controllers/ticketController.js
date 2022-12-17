@@ -4,6 +4,7 @@ const { mongooseToObject } = require('../../until/mongoose');
 const Ticket = require('../Models/ticket');
 const Accout = require('../Models/accouts');
 const UserBuyTicket = require('../Models/userbuyticket');
+const ticket = require('../Models/ticket');
 
 class NewController {
   //[GET] /news
@@ -16,11 +17,11 @@ class NewController {
       )
       .catch(next);
   }
-
   //[GET] /ticket/buy/:id
   buy(req, res, next) {
     Ticket.findById(req.params.id)
       .then((ticket) => {
+        res.cookie('id', req.params.id);
         res.cookie('day', ticket.day);
         res.cookie('clb', ticket.clb);
         res.cookie('stadium', ticket.stadium);
@@ -39,30 +40,57 @@ class NewController {
       .catch(next);
   }
 
-  //[]
+  //[POST] /ticket/user/save
   save(req, res, next) {
-    const userBuyTicket = new UserBuyTicket(req.cookies);
-    userBuyTicket
-      .save()
-      .then(() => {
-        res.clearCookie(req.cookies);
-        res.render('delivery');
-      })
-      .catch(next);
+    let nameTicket;
+    res.cookie('countTicket', req.body.count);
+    if (req.body.loaiVe == '45000') {
+      nameTicket = 'VÉ THƯỜNG';
+    } else if (req.body.loaiVe == '95000') {
+      nameTicket = 'VÉ VIP 1';
+    } else {
+      nameTicket = 'VÉ VIP 2';
+    }
+    res.cookie('nameTicket', nameTicket);
+    Ticket.findById(req.cookies.id).then((ticket) => {
+      let price = parseInt(req.body.count) * parseInt(req.body.loaiVe);
+      res.cookie('price', price);
+      const userBuyTicket = new UserBuyTicket(req.cookies);
+      if (parseInt(ticket.count) > parseInt(req.body.count)) {
+        userBuyTicket.save().then(() => {
+          Ticket.updateOne(
+            { _id: req.cookies.id },
+            { count: parseInt(ticket.count) - parseInt(req.body.count) }
+          ).then(() => {
+            res.clearCookie(req.cookies);
+            res.render('delivery');
+          });
+        });
+      } else {
+        res.json('SỐ LƯỢNG VÉ TRONG KHO KHÔNG ĐỦ');
+      }
+    });
   }
 
   //[GET] /ticket/buyUser
   buyUser(req, res, next) {
-    UserBuyTicket.find({ userName: req.cookies.userName })
+    UserBuyTicket.find({ userName: req.cookies.userName, deleted: false })
       .then((ticket) =>
         res.render('buyUser', { ticket: muntipleMongooseToObject(ticket) })
       )
       .catch(next);
   }
 
+  //[DELETE] /ticket/deleteticketUser
+  deleteticketUser(req, res, next) {
+    UserBuyTicket.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect('back'))
+      .catch(next);
+  }
+
   //[DELETE] /ticket/deleteticket
   deleteTicket(req, res, next) {
-    UserBuyTicket.deleteOne({ _id: req.params.id })
+    UserBuyTicket.delete({ _id: req.params.id })
       .then(() => res.redirect('back'))
       .catch(next);
   }
@@ -77,6 +105,16 @@ class NewController {
           showLogin: false,
           showOut: true,
           showBtn: true,
+        })
+      )
+      .catch(next);
+  }
+
+  buyUserList(req, res, next) {
+    UserBuyTicket.find({ userName: req.cookies.userName, deleted: true })
+      .then((ticket) =>
+        res.render('bookedTicket', {
+          ticket: muntipleMongooseToObject(ticket),
         })
       )
       .catch(next);

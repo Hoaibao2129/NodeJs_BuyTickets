@@ -7,6 +7,10 @@
 
       <th scope='col'>Trận Đấu</th>
       <th scope='col'>Ngày Thi Đấu</th>
+      <th scope='col'>Loại vé</th>
+      <th scope='col'>Số Lượng vé</th>
+      <th scope='col'>Tổng tiền</th>
+
       <th></th>
 
     </tr>
@@ -18,6 +22,9 @@
 
         <td>{{this.clb}}</td>
         <td>{{this.day}}</td>
+        <td>{{this.nameTicket}}</td>
+        <td>{{this.countTicket}}</td>
+        <td>{{this.price}}</td>
         <td><button
             type='button'
             class='btn btn-danger'
@@ -88,7 +95,7 @@
   deleteTicketModel.addEventListener('show.bs.modal', event => { const button
   =event.relatedTarget; ticketId = button.getAttribute('data-id') });
   btnDeleteTicket.onclick = function(){ deleteTicketForm.action
-  ='/ticket/deleteTicket/' + ticketId + '?_method=DELETE';
+  ='/ticket/deleteticketUser/' + ticketId + '?_method=DELETE';
   deleteTicketForm.submit(); }
 
 </script>

@@ -7,7 +7,8 @@
       <th scope='col'>CLB</th>
       <th scope='col'>NGÀY THI ĐẤU</th>
       <th scope='col'>GIỜ THI ĐẤU</th>
-      <th scope='col'>GIÁ VÉ</th>
+      {{! <th scope='col'>LOẠI VÉ</th>
+      <th scope='col'>SỐ LƯỢNG</th> }}
       <th></th>
     </tr>
   </thead>
@@ -18,9 +19,21 @@
         <td>{{this.clb}}</td>
         <td>{{this.day}}</td>
         <td>{{this.time}}</td>
-        <td>{{this.price}}</td>
+        {{!-- <td>
+          <select class='form-select' aria-label='Default select example'>
+            <option selected>Chọn loại vé</option>
+            <option value='{{this.price}}'>Vé Thường : {{this.price}}</option>
+            <option value='2'>Vé Vip 1 :
+              {{pricerTichket this.price 50000}}</option>
+            <option value='3'>Vé Vip 2 :
+              {{pricerTichket this.price 70000}}
+            </option>
+          </select>
+        </td>
+        <td><input type='text' name='name' placeholder='name' /></td> --}}
+
         <td><a href='/ticket/buy/{{this._id}}'><button
-              type='button'
+              type='submit'
               class='btn btn-primary'
             >ĐẶT VÉ</button></a></td>
 
